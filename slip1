@@ -20,8 +20,7 @@
  plt.show()
 
 
- #Q2  # Using python, represent the following information using a bar graph (in g
- #reen color )
+ #Q2  # Using python, represent the following information using a bar graph (in green color )
  # Item         clothing Food rent Petrol Misc.
  # expenditure   600     4000 2000  1500  700
  # (in Rs) 
@@ -29,16 +28,14 @@ import matplotlib.pyplot as plt
 left = [1,2,3,4,5] 
 height = [600,4000,2000,1500,700] 
 tick_label=['clothing','Food','rent','Petrol','Misc'] 
-plt.bar (left,height,tick_label = tick_label,width = 0.8 ,color = ['gree
- n','red']) 
+plt.bar (left,height,tick_label = tick_label,width = 0.8 ,color = ['green','red']) 
 plt.xlabel('Item') 
 plt.ylabel('Expenditure') 
 plt. show()
 
-#Q3   # Write a Python program to draw a polygon with vertices (0,0),(2,0),(2,3) 
-and (1,6) and rotate
+#Q3   # Write a Python program to draw a polygon with vertices (0,0),(2,0),(2,3) and (1,6) and rotate
  # it by 180◦
- import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt 
 import numpy as np 
 vertices = np.array([[0, 0], [2, 0], [2, 3], [1, 6],[0,0]]) 
 plt.figure() 
@@ -47,8 +44,7 @@ plt.title('Original Polygon')
 plt.xlabel('X') 
 plt.ylabel('Y') 
 theta = np.pi  # 180 degrees 
-rotation_matrix = np.array([[np.cos(theta), -np.sin(theta)], 
-[np.sin(theta), np.cos(theta)]]) 
+rotation_matrix = np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]]) 
 vertices_rotated = np.dot(vertices, rotation_matrix) 
 plt.figure() 
 plt.plot(vertices_rotated[:, 0], vertices_rotated[:, 1], 'black') 
@@ -57,23 +53,17 @@ plt.xlabel('X')
 plt.ylabel('Y') 
 plt.show()
 
-#Q4  # Write a Python program to find the area and perimeter of the ∆ABC, where 
-A[0,0],B[5,0],C[3,3].
+#Q4  # Write a Python program to find the area and perimeter of the ∆ABC, where [0,0],B[5,0],C[3,3].
  import numpy as np 
 A = np.array([0, 0]) 
 B = np.array([5, 0]) 
-C = np.array([3, 3]) 
-# Calculate the side lengths of the triangle 
+C = np.array([3, 3])  
 AB = np.linalg.norm(B - A) 
 BC = np.linalg.norm(C - B) 
 CA = np.linalg.norm(A - C) 
-# Calculate the semiperimeter 
-s = (AB + BC + CA) / 2 
-# Calculate the area using Heron's formula 
+s = (AB + BC + CA) / 2  
 area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
-# Calculate the perimeter 
-perimeter = AB + BC + CA 
-# Print the results 
+perimeter = AB + BC + CA  
 print("Triangle ABC:") 
 print("Side AB:", AB) 
 print("Side BC:", BC) 
