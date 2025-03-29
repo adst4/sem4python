@@ -1,0 +1,98 @@
+#Q1 Using Python plot the graph of function f(x) = cos(x) in the interval [0,2π].
+import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.linspace(0, 2 * np.pi, 500) 
+y = np.cos(x) 
+plt.plot(x, y) 
+plt.xlabel('x') 
+plt.ylabel('f(x) = cos(x)') 
+plt.title('Graph of f(x) = cos(x)') 
+plt.grid(True) 
+plt.show()
+
+
+ #Q2 Write a Python program to generate 3D plot of the functions z = sin x+ cos y in −10 < x,y < 10
+import numpy as np 
+import matplotlib.pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D 
+x = np.linspace(-10, 10, 100) 
+y = np.linspace(-10, 10, 100) 
+X, Y = np.meshgrid(x, y) 
+Z = np.sin(X) + np.cos(Y)  
+fig = plt.figure() 
+ax = fig.add_subplot(111, projection='3d') 
+ax.plot_surface(X, Y, Z) 
+ax.set_xlabel('x') 
+ax.set_ylabel('y') 
+ax.set_zlabel('z') 
+ax.set_title('3D Plot of z = sin(x) + cos(y)') 
+plt.show()
+
+#Q3 Using python, generate triangle with vertices (0,0),(4,0),(1,4), check whether the triangle isScalene triangle
+mport matplotlib.pyplot as plt  
+vertex1 = (0, 0) 
+vertex2 = (4, 0) 
+vertex3 = (1, 4) 
+plt.plot(*zip(vertex1, vertex2, vertex3, vertex1), marker='o') 
+plt.xlabel('X') 
+plt.ylabel('Y') 
+plt.title('Triangle') 
+plt.grid(True) 
+plt.show()
+
+#Q4 Write a Python program to find the area and perimeter of the ∆ABC, where A[0,0],B[6,0],C[4,4]
+import numpy as np 
+A = np.array([0, 0]) 
+B = np.array([6, 0]) 
+C = np.array([4, 4]) 
+AB = np.linalg.norm(B - A) 
+BC = np.linalg.norm(C - B) 
+CA = np.linalg.norm(A - C) 
+s = (AB + BC + CA) / 2  
+area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
+perimeter = AB + BC + CA 
+print("Triangle ABC:") 
+print("Side AB:", AB) 
+print("Side BC:", BC) 
+print("Side CA:", CA) 
+print("Area:", area) 
+print("Perimeter:", perimeter)
+
+ #Q5 Write a Python program to solve the following LPP:
+ # Max Z = 150x + 75y
+ # subject to 4x + 6y ≤24
+ # 5x + 3y ≤15
+ # x ≥0,y ≥0
+ from pulp import * 
+problem = LpProblem("LPP", LpMaximize) 
+x = LpVariable('x', lowBound=0, cat='Continuous') 
+y = LpVariable('y', lowBound=0, cat='Continuous') 
+Z= 150*x + 75*y
+ problem += Z 
+problem +=  4*x + 6*y <=24
+ problem +=  5*x +  3*y <=15
+problem.solve()  
+print("Status:", LpStatus[problem.status]) 
+print("Optimal x =", value(x)) 
+print("Optimal y =", value(y))  
+print("Optimal Z =", value(problem.objective))
+
+
+#Q6 Apply Python program in each of the following transformations on the point P[4,−2]
+ # (I) Refection through Y−axis.
+ # (II) Scaling in X−coordinate by factor 3.
+ # (III) Rotation about origin through an angle π.
+ # (IV) Shearing in both X and Y direction by −2 and 4 units respectively
+ import numpy as np
+ P=np.array([4,-2])
+ reflection_y_axis = np.array([-1, 1]) * P
+ scaling_x = np.array([3, 1]) * P
+ rotation_matrix = np.array([[np.cos(np.pi), -np.sin(np.pi)],[np.sin(np.pi), np.cos(np.pi)]]) 
+P_rotation = np.dot(rotation_matrix, P)
+P_sheared = np.array([P[0] + (-2 * P[1]), P[1] + (4 * P[0])])
+print("Original point P:", P) 
+print("Reflection through y-axis:", reflection_y_axis) 
+print("Scaling in X-coordinates by factor 3:", scaling_x)
+print("Rotation about origin through an angle of 180 degree:",P_rotation)
+print(" Shearing in both X and Y direction by -2 and 4 units respectively:")
+print("Shearing in both X and Y direction by −2 and 4 units:",P_sheared)
