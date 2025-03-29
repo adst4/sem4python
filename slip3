@@ -1,0 +1,93 @@
+#Q1  Using Python plot the graph of function f(x) = cos(x) on the interval [0,2pi]
+ import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.linspace(0,2*np.pi) 
+y = np.cos(x) 
+plt.plot(x, y) 
+plt.xlabel('x') 
+plt.ylabel('f(x) = log10(x)') 
+plt.title('2D Graph of f(x) = log10(x)') 
+plt.show()
+
+
+#Q2 Following is the information of students participating in various games i
+# n a school. Represent it
+ # by a Bar graph with bar width of 0.7 inches.
+ # Game               Cricket Football Hockey Chess Tennis
+ # Number of students   65     30        54    10     20
+ import matplotlib.pyplot as plt  
+left = [1,2,3,4,5] 
+height = [65,30,54,10,20] 
+tick_label=['Cricket','Football','Hockey','Chess','Tennis'] 
+plt.bar (left,height,tick_label = tick_label,width = 0.7 ,color = ['orang
+ e','green']) 
+plt.xlabel('Games') 
+plt.ylabel('No.Of Student') 
+plt. show()
+
+
+#Q3  # f the line with points A[2,1],B[4,−1] is transformed by the transformatio
+ # n matrix [T] =[1 2
+ #                           2 1]
+ # then using python, find the equation of transformed line
+ import numpy as np 
+A = np.array([2, 1]) 
+B = np.array([4, -1]) 
+T = np.array([[1, 2], [2, 1]]) 
+A_transformed = np.dot(T, A) 
+B_transformed = np.dot(T, B) 
+x1_transformed, y1_transformed = A_transformed 
+x2_transformed, y2_transformed = B_transformed 
+m_transformed = (y2_transformed - y1_transformed) / (x2_transformed - x1_tr
+ ansformed) 
+b_transformed = y1_transformed - m_transformed * x1_transformed 
+equation_transformed = f'y = {m_transformed} * x + {b_transformed}' 
+print("Equation of transformed line: ", equation_transformed)
+
+
+#Q4   # Generate line segment having endpoints (0,0) and (10,10) find midpoint of 
+#line segment
+ x1, y1 = 0, 0 
+x2, y2 = 10, 10  
+midpoint_x = (x1 + x2) / 2 
+midpoint_y = (y1 + y2) / 2 
+print("Midpoint: ({}, {})".format(midpoint_x, midpoint_y))
+
+
+#Q5# Write a Python program to solve the following LPP:
+ # Min Z = 3.5x + 2y
+ # subject to x + y ≥5
+ # x ≥4
+ # y ≤2
+ # x ≥0,y ≥0
+ from pulp import * 
+problem= LpProblem("Minimize Z", LpMinimize) 
+x= LpVariable("x", lowBound=0, cat='Continuous') 
+y= LpVariable("y", lowBound=0, cat='Continuous') 
+Z = 3.5 * x + 2 * y 
+problem+= Z 
+problem+= x + y >= 5
+ problem+= x >= 4 
+problem+= y <= 2 
+problem.solve() 
+print("Optimal solution:") 
+print("x =", value(x)) 
+print("y =", value(y)) 
+print("Optimal value of Z =",value(problem.objective))
+
+#Q6  # Apply Python program in each of the following transformations on the point P[4,−2]
+ # (I) Refection through Y−axis.
+ # (II) Scaling in X−coordinate by factor 3.
+ # (III) Scaling in Y−coordinate by factor 2.5
+ # (IV) Reflection through the line y = −x.
+ import numpy as np 
+P = np.array([4, -2]) 
+reflection_y_axis = np.array([-1, 1]) * P 
+scaling_x = np.array([3, 1]) * P  
+scaling_y = np.array([1, 2.5]) * P 
+reflection_line = np.array([-P[1],-P[0]]) 
+print("Original point P:", P) 
+print("Reflection through y-axis:", reflection_y_axis) 
+print("Scaling in X-coordinates by factor 3:", scaling_x) 
+print("Scaling in Y-coordinates by factor 2.5:", scaling_y) 
+print("Reflection through the line y = -x:", reflection_line)
