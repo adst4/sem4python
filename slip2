@@ -1,5 +1,4 @@
-#1 Write a Python program to plot 2D graph of the functions f(x) = log10(x) 
-and in [0,10]
+#1 Write a Python program to plot 2D graph of the functions f(x) = log10(x) and in [0,10]
  import numpy as np 
 import matplotlib.pyplot as plt 
 x = np.linspace(1,10) 
@@ -11,9 +10,8 @@ plt.title('2D Graph of f(x) = log10(x)')
 plt.grid(True) 
 plt.show()
 
-#Q2 Write a Python program to plot 2D graph of the functions f(x) = log10(x) 
-and in [0,10]
- import numpy as np 
+#Q2 Write a Python program to plot 2D graph of the functions f(x) = log10(x) and in [0,10]
+import numpy as np 
 import matplotlib.pyplot as plt 
 x = np.linspace(1,10) 
 y = np.log10(x)  
@@ -24,8 +22,7 @@ plt.title('2D Graph of f(x) = log10(x)')
 plt.grid(True) 
 plt.show()
 
-#Q3 Using sympy declare the points A(0,2),B(5,2),C(3,0) check whether these p
- #oints are collinear.
+#Q3 Using sympy declare the points A(0,2),B(5,2),C(3,0) check whether these points are collinear.
  # Declare the line passing through the points A and B, find the distance of 
 #this line from point C.
  from sympy import Point, Line 
@@ -39,11 +36,10 @@ else:
 print("Points A, B, and C are not collinear.") 
 AB_line = Line(A, B) 
 distance = AB_line.distance(C) 
-print("Distance of the line passing through A and B from point C: ", distan
- ce)
+print("Distance of the line passing through A and B from point C: ", distance)
 
 
-  #Q4 Write a Python program to find the area and perimeter of the  ABC, where 
+#Q4 Write a Python program to find the area and perimeter of the  ABC, where 
 # A[0, 0] B[6, 0], C[4,4]. 
 import numpy as np 
 A = np.array([0, 0]) 
@@ -82,8 +78,7 @@ print("Optimal x =", value(x))
 print("Optimal y =", value(y)) 
 print("Optimal Z =", value(problem.objective))
 
-#Q6 Apply Python program in each of the following transformations on the poin
-# t P[4,−2]
+#Q6 Apply Python program in each of the following transformations on the point P[4,−2]
  # (I) Refection through Y−axis.
  # (II) Scaling in X−coordinate by factor 3.
  # (III) Scaling in Y−coordinate by factor 2.5
