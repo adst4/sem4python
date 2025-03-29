@@ -1,0 +1,113 @@
+#Q1  Write a Python program to plot 2D graph of the functions f(x) = x2 and g(x) = x3 in [−1,1]
+ import matplotlib.pyplot as plt
+ import numpy as np
+ def f(x):
+ return x**2
+ def g(x):
+ return x**3
+ x=np.linspace(-1,1,100)
+ y_f=f(x)
+ y_g=g(x)
+ fig,ax=plt.subplots()
+ ax.plot(x,y_f,label='f(x)=x^2')
+ ax.plot(x,y_g,label='g(x)=x^3')
+ ax.set_xlabel('x')
+ ax.set_ylabel('y')
+ ax.legend()
+ ax.set_title('2D graph of f(x)=x^2 and g(x)=x^3')
+ plt.show()
+
+
+ #Q2  Write a Python program to generate 3D plot of the function z = sin(x) + cos(y) in −5 < x,y < 5
+import numpy as np 
+import matplotlib.pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D  
+x = np.linspace(-5, 5, 100) 
+y = np.linspace(-5, 5, 100) 
+X, Y = np.meshgrid(x, y) 
+Z = np.sin(X) + np.cos(Y) 
+fig = plt.figure() 
+ax = fig.add_subplot(111, projection='3d') 
+ax.plot_surface(X, Y, Z, cmap='viridis') 
+ax.set_xlabel('X') 
+ax.set_ylabel('Y') 
+ax.set_zlabel('Z') 
+ax.set_title('3D Plot of z = sin(x) + cos(y)') 
+plt.show()
+
+
+#Q3  Write a Python program to draw a polygon with vertices (0,0),(2,0),(2,3) and (1,6) and rotate it by 180
+import matplotlib.pyplot as plt 
+import numpy as np 
+vertices = np.array([[0, 0], [2, 0], [2, 3], [1, 6]]) 
+plt.figure() 
+plt.plot(vertices[:, 0], vertices[:, 1], 'bo-') 
+plt.title('Original Polygon') 
+plt.xlabel('X') 
+plt.ylabel('Y') 
+theta = np.pi 
+rotation_matrix = np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]]) 
+vertices_rotated = np.dot(vertices, rotation_matrix) 
+plt.figure() 
+plt.plot(vertices_rotated[:, 0], vertices_rotated[:, 1], 'ro-') 
+plt.title('Rotated Polygon (180 degrees)') 
+plt.xlabel('X') 
+plt.ylabel('Y') 
+plt.show()
+
+
+#Q4  Write a Python program to find the area and perimeter of the triangle ABC, where A[0,0],B[5,0] and C[3,3].
+import numpy as np 
+A = np.array([0, 0]) 
+B = np.array([5, 0]) 
+C = np.array([3, 3]) 
+AB = np.linalg.norm(B - A) 
+BC = np.linalg.norm(C - B) 
+CA = np.linalg.norm(A - C) 
+s = (AB + BC + CA) / 2 
+area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
+perimeter = AB + BC + CA 
+print("Triangle ABC:") 
+print("Side AB:", AB) 
+print("Side BC:", BC) 
+print("Side CA:", CA) 
+print("Area:", area) 
+print("Perimeter:", perimeter)
+
+
+ #Q5 Write a Python program to solve the following LPP:
+ #     Max Z = 150x + 75y
+ # subject to 4x + 6y ≤24
+ #            5x + 3y ≤15
+ # x ≥0,y ≥0
+from pulp import * 
+problem = LpProblem("LPP", LpMaximize) 
+x = LpVariable('x', lowBound=0, cat='Continuous') 
+y = LpVariable('y', lowBound=0, cat='Continuous') 
+Z= 150*x + 75*y
+problem += Z 
+problem +=  4*x + 6*y <=24
+problem +=  5*x +  3*y <=15
+problem.solve() 
+print("Status:", LpStatus[problem.status]) 
+print("Optimal x =", value(x)) 
+print("Optimal y =", value(y)) 
+print("Optimal Z =", value(problem.objective))
+
+
+#Q6 Apply each of the following transformations on the point P[2,−3].
+ # I. Reflection through X-axis.
+ # II. Scaling in X-coordinate by factor 2.
+ # III. Scaling in Y-coordinate by factor 1.5.
+ # IV. Reflection through the line y = x
+import numpy as np 
+P = np.array([2,-3])
+ reflection_x_axis = np.array([1, -1]) * P
+ scaling_x = np.array([2, 1]) * P  
+scaling_y = np.array([1, 1.5]) * P 
+reflection_line = np.array([P[1],P[0]]) 
+print("Original point P:", P) 
+print("Reflection through y-axis:", reflection_x_axis) 
+print("Scaling in X-coordinates by factor 2:", scaling_x) 
+print("Scaling in Y-coordinates by factor 1.5:", scaling_y) 
+print("Reflection through the line y = x:", reflection_line)
