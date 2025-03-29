@@ -1,0 +1,104 @@
+ #Q1  Write a python program to Plot 2D X-axis and Y-axis black color and in thesame diagram plot green triangle with vertices [5,4],[7,4],[6,6].
+import matplotlib.pyplot as plt 
+triangle_vertices = [[5, 4], [7, 4], [6, 6]] 
+x = [vertex[0] for vertex in triangle_vertices] 
+y = [vertex[1] for vertex in triangle_vertices] 
+plt.axhline(0, color='black') 
+plt.axvline(0, color='black') 
+plt.plot(x + [x[0]], y + [y[0]], 'g') 
+plt.xlim(4, 8) 
+plt.ylim(3, 7) 
+plt.xlabel('X-axis') 
+plt.ylabel('Y-axis') 
+plt.show()
+
+
+#Q2 Using Python plot the graph of function f(x) = cos(x) on the interval [0,2π].
+import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.linspace(0, 2 * np.pi, 500) 
+y = np.cos(x) 
+plt.plot(x, y) 
+plt.xlabel('x') 
+plt.ylabel('f(x) = cos(x)') 
+plt.title('Graph of f(x) = cos(x)') 
+plt.grid(True) 
+plt.show()
+
+
+ #Q3 Using sympy, declare the points A(0,7),B(5,2). Declare the line segment passing through them.
+ # Find the length and midpoint of the line segment passing through points A and B
+from sympy import Point, Line 
+A = Point(0, 7) 
+B = Point(5, 2) 
+line_AB = Line(A, B) 
+length_AB = A.distance(B) 
+midpoint_AB = ((A[0] + B[0]) / 2, (A[1] + B[1]) / 2)
+print("Point A: {}".format(A)) 
+print("Point B: {}".format(B)) 
+print("Line segment AB: {}".format(line_AB)) 
+print("Length of line segment AB: {}".format(length_AB)) 
+print("Midpoint of line segment AB: {}".format(midpoint_AB))
+
+
+ #Q4 Write a python program to find the area and perimeter of ∆ABC where A(0, 0),B(5,0),C(3,3)
+import numpy as np 
+A = np.array([0, 0]) 
+B = np.array([5, 0]) 
+C = np.array([3, 3]) 
+AB = np.linalg.norm(B - A) 
+BC = np.linalg.norm(C - B) 
+CA = np.linalg.norm(A - C) 
+s = (AB + BC + CA) / 2 
+area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
+perimeter = AB + BC + CA 
+print("Triangle ABC:") 
+print("Side AB:", AB) 
+print("Side BC:", BC) 
+print("Side CA:", CA) 
+print("Area:", area) 
+print("Perimeter:", perimeter)
+
+
+#Q5  Write a Python program to solve the following LPP:
+ #     Max Z  = 150x + 75y
+ # subject to 4x + 6y ≤24
+ #            5x + 3y ≤15
+ #             x ≥0,y ≥0
+ from pulp import * 
+problem = LpProblem("LPP", LpMaximize) 
+x = LpVariable('x', lowBound=0, cat='Continuous') 
+y = LpVariable('y', lowBound=0, cat='Continuous') 
+Z= 150*x + 75*y
+problem += Z 
+problem +=  4*x + 6*y <=24
+problem +=  5*x +  3*y <=15
+problem.solve() 
+print("Status:", LpStatus[problem.status]) 
+print("Optimal x =", value(x)) 
+print("Optimal y =", value(y)) 
+print("Optimal Z =", value(problem.objective))
+
+
+#Q6 # Write a python program to apply the following transformations on the point (−2,4) :
+ # (I) Shearing in Y direction by 7 units.
+ # (II) Scaling in X and Y direction by 7/2 and 7 units respectively.
+ # (III) Shearing in X and Y direction by 4 and 7 units respectively.
+ # (IV) Rotation about origin by an angle 60◦.
+ import numpy as np
+ P=np.array([-2,4])
+ shearing_y1 = [P[0], P[1] + (7 * P[0])]
+ scaling_x = np.array([7/2, 1]) * P 
+ scaling_y = np.array([1, 7]) * P 
+ shearing_x = [P[0] + (4 * P[1]), P[1]]
+ shearing_y = [P[0], P[1] + (7 * P[0])]
+ rotation_matrix = np.array([[np.cos(np.pi/3), -np.sin(np.pi/3)], [np.sin(np.pi/3), np.cos(np.pi/3)]]) 
+ P_rotation = np.dot(rotation_matrix, P)
+ print("Original point P:", P)
+ print("Shearing in Y direction:", shearing_y1) 
+ print("Scaling in X-coordinates by factor 7/2:", scaling_x) 
+ print("Scaling in Y-coordinates by factor 7:", scaling_y) 
+ print(" Shearing in both X and Y direction by 4 and 7 units respectively:")
+ print("Shearing in X direction:", shearing_x)
+ print("Shearing in Y direction:", shearing_y) 
+ print("Rotation about origin through an angle of 60 degree:",P_rotation)
