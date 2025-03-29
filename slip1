@@ -33,8 +33,7 @@ plt.xlabel('Item')
 plt.ylabel('Expenditure') 
 plt. show()
 
-#Q3   # Write a Python program to draw a polygon with vertices (0,0),(2,0),(2,3) and (1,6) and rotate
- # it by 180◦
+#Q3   # Write a Python program to draw a polygon with vertices (0,0),(2,0),(2,3) and (1,6) and rotateit by 180◦
 import matplotlib.pyplot as plt 
 import numpy as np 
 vertices = np.array([[0, 0], [2, 0], [2, 3], [1, 6],[0,0]]) 
@@ -77,29 +76,21 @@ print("Perimeter:", perimeter)
  # 5x + 3y ≤15
  # x ≥0,y ≥0
  from pulp import * 
-# Create the LP problem as a maximization problem 
-problem = LpProblem("LPP", LpMaximize) 
-# Define the decision variables 
+problem = LpProblem("LPP", LpMaximize)
 x = LpVariable('x', lowBound=0, cat='Continuous') 
 y = LpVariable('y', lowBound=0, cat='Continuous') 
-# Define the objective function 
 Z = 150 * x + 75 * y
- problem += Z 
+problem += Z 
 problem += 4 * x + 6 * y <= 24 
 problem += 5 * x + 3 * y <= 15
- # Solve the LP problem 
 problem.solve() 
-# Print the status of the solution 
-print("Status:", LpStatus[problem.status]) 
-# Print the optimal values of x and y 
+print("Status:", LpStatus[problem.status])
 print("Optimal x =", value(x)) 
 print("Optimal y =", value(y)) 
-# Print the optimal value of the objective function 
 print("Optimal Z =", value(problem.objective))
 
 
-#Q6 # Apply Python program in each of the following transformations on the poin
- t P[3,−1]
+#Q6 # Apply Python program in each of the following transformations on the point P[3,−1]
  # (I) Refection through X−axis.
  # (II) Scaling in X−coordinate by factor 2.
  # (III) Scaling in Y−coordinate by factor 1.5.
