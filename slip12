@@ -1,0 +1,97 @@
+ #Q1  Write a python program to plot the graph of y = x3 + 10x −5, for x ∈[−10,10] in red colour
+import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.linspace(-10, 10, 500) 
+y = x**3 + 10*x - 5 
+plt.plot(x, y, color='red') 
+plt.title("Graph of y = x**3 + 10*x - 5") 
+plt.xlabel("x") 
+plt.ylabel("y") 
+plt.show()
+
+
+#Q2  Using Python plot the graph of function f(x) = x2 on the interval [−2,2]
+import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.arange(-2, 2, 0.1) 
+y = x**2
+plt.plot(x, y, label='f(x) = x^2',color='red') 
+plt.title('Graph of f(x) = x^2') 
+plt.xlabel('x') 
+plt.ylabel('f(x)') 
+plt.legend() 
+plt.show()
+
+
+ #Q3 Write a python program to rotate the segment by 180◦ having end points (1,0) and (2,−1).
+import math 
+x1, y1 = 1, 0 
+x2, y2 = 2, -1 
+x1_rotated = -x1 
+y1_rotated = -y1 
+x2_rotated = -x2 
+y2_rotated = -y2 
+print("Original Endpoint 1: ({}, {})".format(x1, y1)) 
+print("Original Endpoint 2: ({}, {})".format(x2, y2)) 
+print("Rotated Endpoint 1: ({}, {})".format(x1_rotated, y1_rotated)) 
+print("Rotated Endpoint 2: ({}, {})".format(x2_rotated, y2_rotated))
+
+
+#Q4 Write a python program to find the area and perimeter of the ∆XY Z, where X(1,2),Y (2,−2), Z(−1,2)
+import math 
+X = [1, 2] 
+Y = [2, -2] 
+Z = [-1, 2] 
+def distance(p1, p2): 
+return math.sqrt((p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2) 
+XY = distance(X, Y) 
+YZ = distance(Y, Z) 
+XZ = distance(X, Z) 
+perimeter = XY + YZ + XZ 
+s = perimeter / 2 
+area = math.sqrt(s * (s - XY) * (s - YZ) * (s - XZ)) 
+print("Length of XY: ", XY) 
+print("Length of YZ: ", YZ) 
+print("Length of XZ: ", XZ) 
+print("Perimeter: ", perimeter) 
+print("Area: ", area)
+
+
+#Q5 Write a program to solve the following LPP:
+ # Min Z = 3.5x + 2y
+ # subject to x + y ≥5
+ # x ≥4
+ # y ≤2
+ # x ≥0,y ≥0
+from pulp import * 
+problem= LpProblem("Minimize Z", LpMinimize) 
+x= LpVariable("x", lowBound=0, cat='Continuous') 
+y= LpVariable("y", lowBound=0, cat='Continuous') 
+Z = 3.5 * x + 2 * y 
+problem+= Z 
+problem+= x + y >= 5
+problem+= x >= 4 
+problem+= y <= 2 
+problem.solve()
+print("Status:", LpStatus[problem.status])  
+print("x =", value(x))
+print("y =", value(y)) 
+print("Optimal value of Z =",value(problem.objective))
+
+
+#Q6 Write a python program to apply the following transformations on the point [−2,4]
+ # (I) Refection through Y− axis.
+ # (II) Scaling in X−coordinate by factor 6.
+ # (III) Scaling in Y−coordinate by factor 4.1.
+ # (IV) Shearing in X direction by 7/2 units.
+ import numpy as np
+ P=np.array([-2,4])
+ reflection_y_axis = np.array([-1, 1]) * P
+ scaling_x = np.array([6, 1]) * P
+ scaling_y = np.array([1, 4.1]) * P 
+ shearing_x = [P[0] + ((7/2) * P[1]), P[1]]
+ print("Original point P:", P) 
+ print("Reflection through y-axis:", reflection_y_axis) 
+ print("Scaling in X-coordinates by factor 6:", scaling_x) 
+ print("Scaling in Y-coordinates by factor 4.1:", scaling_y)
+ print("Shearing in X direction:", shearing_x)
