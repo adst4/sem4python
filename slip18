@@ -1,0 +1,99 @@
+#Q1 Write a Python program to plot the graph 2x2 −4x + 5 in [–10,10] in magenta colored dashed pattern
+ import numpy as np
+ import matplotlib.pyplot as plt
+ def f(x):
+ return 2*x**2 - 4*x + 5
+ x = np.linspace(-10, 10, 400)
+ y = f(x)
+ plt.plot(x, y, color='magenta', linestyle='dashed', label='2x^2 - 4x + 5')
+ plt.xlabel('x')
+ plt.ylabel('y')
+ plt.title('Graph of $2x^2 - 4x + 5$')
+ plt.grid(True)
+ plt.legend()
+ plt.show()
+
+
+#Q2 Write a Python program to generate 3D plot of the functions z = x2 + y2 in −5 < x,y < 5
+import numpy as np 
+import matplotlib.pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D 
+x = np.linspace(-5, 5, 100) 
+y = np.linspace(-5, 5, 100) 
+X, Y = np.meshgrid(x, y) 
+Z = X**2 + Y**2 
+fig = plt.figure() 
+ax = fig.add_subplot(111, projection='3d') 
+ax.plot_surface(X, Y, Z, cmap='viridis') 
+ax.set_xlabel('x') 
+ax.set_ylabel('y') 
+ax.set_zlabel('z')
+ax.set_title('3D Plot of z = x^2 + y^2')
+plt.show()
+
+
+#Q3 Write a Python program to generate vector x in the interval [−22,22] using numpy package with 80 subintervals
+import numpy as np 
+start = -22 
+end = 22 
+num_subintervals = 80 
+x = np.linspace(start, end ,num = num_subintervals+1)
+print(x)
+
+
+ #Q4 Write a Python program to rotate the triangle ABC by 90 degree, where A[1,2],B[2,−2]andC[−1,2]
+import numpy as np 
+A = np.array([1, 2]) 
+B = np.array([2, -2]) 
+C = np.array([-1, 2]) 
+angle = np.radians(90) 
+rotation_matrix = np.array([[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]]) 
+A_rotated = np.dot(rotation_matrix, A) 
+B_rotated = np.dot(rotation_matrix, B) 
+C_rotated = np.dot(rotation_matrix, C) 
+print("Rotated Point A: ", A_rotated) 
+print("Rotated Point B: ", B_rotated) 
+print("Rotated Point C: ", C_rotated)
+
+
+#Q5 write a Python program to solve the following LPP:
+ # Min Z = x + y
+ # subject to x ≥6
+ # y ≥6
+ # x + y ≤11
+ # x ≥0,y ≥0
+ from pulp import *
+ problem= LpProblem("Minimize Z", LpMinimize) 
+ x= LpVariable("x", lowBound=0, cat='Continuous') 
+ y= LpVariable("y", lowBound=0, cat='Continuous') 
+ Z =  x + y 
+ problem+= Z 
+ problem+= x  >= 6
+ problem+= y >= 6 
+ problem+=  x + y <=11
+ problem.solve() 
+ print("Status:", LpStatus[problem.status])
+ if problem.status==LpStatusOptimal:
+ print("Status:", LpStatus[problem.status])
+ print("x =", value(x)) 
+ print("y =", value(y)) 
+ print("Optimal value of Z =",value(problem.objective))
+
+
+ #Q6 Apply each of the following transformations on the point P[3,−1].
+ # I. Reflection through Y-axis.
+ # II. Scaling in X and Y direction by 1/2 and 3 units respectively.
+ # III. Shearing in both X and Y direction by -2 and 4 units respectively.
+ # IV. Rotation about origin by an angle 60 degrees.
+ import numpy as np
+ P = np.array([3, -1])
+ P_reflected = np.array([-P[0], P[1]])
+ P_scaled = np.array([P[0] * 0.5, P[1] * 3])
+ P_sheared = np.array([P[0] + (-2 * P[1]), P[1] + (4 * P[0])])
+ rotation_matrix = np.array([[np.cos(np.pi/3), -np.sin(np.pi/3)], [np.sin(np.pi/3), np.cos(np.pi/3)]])
+ P_rotated = np.dot(rotation_matrix, P)
+ print("Original point P:", P)
+ print("I. Reflection through Y-axis:", P_reflected)
+ print("II. Scaled point:", P_scaled)
+ print("III. Sheared point:", P_sheared)
+ print("IV. Rotated point:", P_rotated)
