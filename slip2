@@ -1,0 +1,101 @@
+#1 Write a Python program to plot 2D graph of the functions f(x) = log10(x) 
+and in [0,10]
+ import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.linspace(1,10) 
+y = np.log10(x) 
+plt.plot(x, y) 
+plt.xlabel('x') 
+plt.ylabel('f(x) = log10(x)') 
+plt.title('2D Graph of f(x) = log10(x)') 
+plt.grid(True) 
+plt.show()
+
+#Q2 Write a Python program to plot 2D graph of the functions f(x) = log10(x) 
+and in [0,10]
+ import numpy as np 
+import matplotlib.pyplot as plt 
+x = np.linspace(1,10) 
+y = np.log10(x)  
+plt.plot(x, y) 
+plt.xlabel('x') 
+plt.ylabel('f(x) = log10(x)') 
+plt.title('2D Graph of f(x) = log10(x)') 
+plt.grid(True) 
+plt.show()
+
+#Q3 Using sympy declare the points A(0,2),B(5,2),C(3,0) check whether these p
+ #oints are collinear.
+ # Declare the line passing through the points A and B, find the distance of 
+#this line from point C.
+ from sympy import Point, Line 
+A = Point(0, 2) 
+B = Point(5, 2) 
+C = Point(3, 0) 
+collinear = Point.is_collinear(A, B, C) 
+if collinear: 
+print("Points A, B, and C are collinear.") 
+else: 
+print("Points A, B, and C are not collinear.") 
+AB_line = Line(A, B) 
+distance = AB_line.distance(C) 
+print("Distance of the line passing through A and B from point C: ", distan
+ ce)
+
+
+  #Q4 Write a Python program to find the area and perimeter of the  ABC, where 
+# A[0, 0] B[6, 0], C[4,4]. 
+import numpy as np 
+A = np.array([0, 0]) 
+B = np.array([6, 0]) 
+C = np.array([4, 4]) 
+AB = np.linalg.norm(B - A) 
+BC = np.linalg.norm(C - B) 
+CA = np.linalg.norm(A - C) 
+s = (AB + BC + CA) / 2 
+area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
+perimeter = AB + BC + CA 
+print("Triangle ABC:") 
+print("Side AB:", AB) 
+print("Side BC:", BC) 
+print("Side CA:", CA) 
+print("Area:", area) 
+print("Perimeter:", perimeter) 
+
+
+#Q5 Write a Python program to solve the following LPP:
+ # Max Z = 5x + 3y
+ # subject to x + y ≤7
+ # 2x + 5y ≤1
+ # x ≥0,y ≥0
+ from pulp import * 
+problem = LpProblem("LPP", LpMaximize) 
+x = LpVariable('x', lowBound=0, cat='Continuous') 
+y = LpVariable('y', lowBound=0, cat='Continuous') 
+Z = 5 * x + 3 * y
+ problem += Z 
+problem +=  x + y <= 7 
+problem += 2*x +5* y <= 1 
+problem.solve() 
+print("Status:", LpStatus[problem.status]) 
+print("Optimal x =", value(x)) 
+print("Optimal y =", value(y)) 
+print("Optimal Z =", value(problem.objective))
+
+#Q6 Apply Python program in each of the following transformations on the poin
+# t P[4,−2]
+ # (I) Refection through Y−axis.
+ # (II) Scaling in X−coordinate by factor 3.
+ # (III) Scaling in Y−coordinate by factor 2.5
+ # (IV) Reflection through the line y = −x.
+ import numpy as np 
+P = np.array([4, -2]) 
+reflection_y_axis = np.array([-1, 1]) * P  
+scaling_x = np.array([3, 1]) * P  
+scaling_y = np.array([1, 2.5]) * P 
+reflection_line = np.array([-P[1],-P[0]]) 
+print("Original point P:", P) 
+print("Reflection through y-axis:", reflection_y_axis) 
+print("Scaling in X-coordinates by factor 3:", scaling_x) 
+print("Scaling in Y-coordinates by factor 2.5:", scaling_y) 
+print("Reflection through the line y = -x:", reflection_line)
