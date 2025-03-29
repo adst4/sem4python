@@ -1,0 +1,103 @@
+ #Q1 Represent the following information using a bar graph (in green color )
+ # Item               clothing Food rent Petrol Misc.
+ # expenditure in Rs  600     4000  2000  1500   700
+ import matplotlib.pyplot as plt  
+ left = [1,2,3,4,5] 
+ height = [600,4000,2000,1500,700] 
+ tick_label=['clothing','food','rent','petrol','Misc'] 
+ plt.bar(left , height ,tick_label=tick_label, width = 0.8 ,color = ['green','red']) 
+ plt.xlabel('Item') 
+ plt.ylabel('Expenditure') 
+ plt. show()
+
+
+ #Q2 Write a python program to plot the 3D line graph whose parametric equation is (cos(2x),sin(2x),x)
+ # for 10 ≤x ≤20 (in red color ), with title to the graph.
+ import numpy as np 
+import matplotlib.pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D 
+x = np.linspace(10, 20, 500)  
+y = np.sin(2 * x) 
+z = x 
+x = np.cos(2 * x) 
+fig = plt.figure() 
+ax = fig.add_subplot(111, projection='3d') 
+ax.plot(x, y, z, color='red') 
+ax.set_title("3D Line Graph: (cos(2x), sin(2x), x)") 
+ax.set_xlabel('X') 
+ax.set_ylabel('Y') 
+ax.set_zlabel('Z') 
+plt.show()
+
+
+#Q3 Write a python program to rotate the ∆ABC by 90◦ where A(1,1),B(2,−2),C(1,2)
+import numpy as np 
+A = np.array([1, 1])
+B = np.array([2, -2]) 
+C = np.array([1, 2]) 
+angle = np.radians(90) 
+rotation_matrix = np.array([[np.cos(angle), -np.sin(angle)], 
+[np.sin(angle), np.cos(angle)]]) 
+A_rotated = np.dot(rotation_matrix, A) 
+B_rotated = np.dot(rotation_matrix, B) 
+C_rotated = np.dot(rotation_matrix, C) 
+print("Rotated Point A: ", A_rotated) 
+print("Rotated Point B: ", B_rotated) 
+print("Rotated Point C: ", C_rotated)
+
+#Q4 Find the area and perimeter of the ∆ABC, where A[0,0],B[5,0],C[3,3]
+import numpy as np 
+A = np.array([0, 0]) 
+B = np.array([5, 0]) 
+C = np.array([3, 3]) 
+AB = np.linalg.norm(B - A) 
+BC = np.linalg.norm(C - B) 
+CA = np.linalg.norm(A - C) 
+s = (AB + BC + CA) / 2 
+area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
+perimeter = AB + BC + CA 
+print("Triangle ABC:") 
+print("Side AB:", AB) 
+print("Side BC:", BC) 
+print("Side CA:", CA) 
+print("Area:", area) 
+print("Perimeter:", perimeter)
+
+
+ #Q5 Solve LPP by using python:
+ # Max Z = x + y
+ # subject to x −y ≥1
+ # x + y ≥2
+ # x ≥0,y ≥0
+from pulp import * 
+problem = LpProblem("LPP", LpMaximize) 
+x = LpVariable('x', lowBound=0, cat='Continuous') 
+y = LpVariable('y', lowBound=0, cat='Continuous') 
+Z= x + y
+problem += Z 
+problem +=  x - y >=1
+ problem +=  x +  y >=2
+problem.solve() 
+print("Status:", LpStatus[problem.status]) 
+print("Optimal x =", value(x)) 
+print("Optimal y =", value(y)) 
+print("Optimal Z =", value(problem.objective))
+
+
+#Q6 Write a python program to apply the following transformations on the point (−2,4) :
+ # (I) Refection through X−axis.
+ # (II) Scaling in X−coordinate by factor 6.
+ # (III) Shearing in X direction by 4 units.
+ # (IV) Rotate about origin through an angle 30◦.
+ import numpy as np
+ P=np.array([-2,4])
+ reflection_x_axis = np.array([1, -1]) * P 
+ scaling_x = np.array([6, 1]) * P
+ shearing_x = [P[0] + (4 * P[1]), P[1]]
+ rotation_matrix = np.array([[np.cos(np.pi/6), -np.sin(np.pi/6)], [np.sin(np.pi/6), np.cos(np.pi/6)]]) 
+ P_rotation = np.dot(rotation_matrix, P)
+ print("Original point P:", P) 
+ print("Reflection through x-axis:", reflection_x_axis)
+ print("Scaling in X-coordinates by factor 6:", scaling_x) 
+ print("Shearing in X direction:", shearing_x)
+ print("Rotation about origin through an angle of 30 degree:",P_rotation)
