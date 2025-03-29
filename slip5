@@ -1,0 +1,113 @@
+#Q1 Using Python plot the surface plot of function z = cos (x2 + y2 −0.5)in the interval from −1 < x,y < 1
+mport numpy as np 
+import matplotlib.pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D 
+def func(x, y): 
+return np.cos(x**2 + y**2 - 0.5) 
+x = np.linspace(-1, 1, 100) 
+y = np.linspace(-1, 1, 100) 
+X, Y = np.meshgrid(x, y)  
+Z = func(X, Y)  
+fig = plt.figure() 
+ax = fig.add_subplot(111, projection='3d') 
+ax.plot_surface(X, Y, Z, cmap='viridis') 
+ax.set_xlabel('X') 
+ax.set_ylabel('Y') 
+ax.set_zlabel('Z') 
+ax.set_title('Surface Plot of z = cos(x**2 + y**2 - 0.5)') 
+plt.show()
+
+
+#Q2 Generate 3D surface Plot for the function f(x) = sin (x2 + y2)in the interval [0,10]
+import numpy as np 
+import matplotlib.pyplot as plt 
+from mpl_toolkits.mplot3d import Axes3D 
+def func(x, y): 
+return np.sin(x**2 + y**2) 
+x = np.linspace(0, 10, 100) 
+y = np.linspace(0, 10, 100) 
+X, Y = np.meshgrid(x, y)  
+Z = func(X, Y)  
+fig = plt.figure() 
+ax = fig.add_subplot(111, projection='3d') 
+ax.plot_surface(X, Y, Z, cmap='viridis')
+ax.set_xlabel('X') 
+ax.set_ylabel('Y') 
+ax.set_zlabel('Z') 
+ax.set_title('Surface Plot of f(x) = sin(x**2 + y**2)') 
+plt.show() 
+
+#Q3 Using python, generate triangle with vertices (0,0),(4,0),(4,3) check whether the triangle is Right angle triangle
+import matplotlib.pyplot as plt 
+vertex1 = (0, 0) 
+vertex2 = (4, 0) 
+vertex3 = (4, 3) 
+x = [vertex1[0], vertex2[0], vertex3[0], vertex1[0]] 
+y = [vertex1[1], vertex2[1], vertex3[1], vertex1[1]] 
+plt.plot(x, y, 'black', label='Triangle') 
+plt.plot(vertex1[0], vertex1[1], 'ro', label='Vertex 1') 
+plt.plot(vertex2[0], vertex2[1], 'go', label='Vertex 2') 
+plt.plot(vertex3[0], vertex3[1], 'mo', label='Vertex 3') 
+plt.xlabel('X') 
+plt.ylabel('Y') 
+plt.title('Triangle with Vertices') 
+plt.legend() 
+plt.grid(True) 
+plt.show()
+
+#Q4  # Write a Python program to find the area and perimeter of the ∆ABC, where A[0,0],B[6,0],C[4,4]
+import numpy as np 
+A = np.array([0, 0]) 
+B = np.array([6, 0]) 
+C = np.array([4, 4]) 
+AB = np.linalg.norm(B - A) 
+BC = np.linalg.norm(C - B) 
+CA = np.linalg.norm(A - C) 
+s = (AB + BC + CA) / 2 
+area = np.sqrt(s * (s - AB) * (s - BC) * (s - CA)) 
+perimeter = AB + BC + CA
+print("Triangle ABC:") 
+print("Side AB:", AB) 
+print("Side BC:", BC) 
+print("Side CA:", CA) 
+print("Area:", area) 
+print("Perimeter:", perimeter)
+
+
+ #Q5  Write a Python program to solve the following LPP:
+ # Max Z = 5x + 3y
+ # subject to x + y ≤7
+ # 2x + 5y ≤1
+ # x ≥0,y ≥0
+ from pulp import * 
+problem = LpProblem("LPP", LpMaximize) 
+x = LpVariable('x', lowBound=0, cat='Continuous') 
+y = LpVariable('y', lowBound=0, cat='Continuous') 
+Z=5 * x + 3 * y
+ problem += Z 
+problem +=  x +  y <= 7 
+problem += 2 * x + 5 * y <= 1   
+problem.solve()  
+print("Status:", LpStatus[problem.status]) 
+print("Optimal x =", value(x)) 
+print("Optimal y =", value(y))  
+print("Optimal Z =", value(problem.objective))
+
+ #Q6 Apply Python program in each of the following transformations on the point P[3,8]
+ # (I) Refection through X−axis.
+ # (II) Scaling in X−coordinate by factor 6.
+ # (III) Rotation about origin through an angle 30◦.
+ # (IV) Reflection through the line y = −x.
+ import numpy as np
+ P=np.array([3,8])
+ reflection_x_axis = np.array([1, -1]) * P
+ scaling_x = np.array([6, 1]) * P  
+rotation_matrix = np.array([[np.cos(np.pi/6), -np.sin(np.pi/6)], 
+[np.sin(np.pi/6), np.cos(np.pi/6)]]) 
+P_rotation = np.dot(rotation_matrix, P)
+reflection_line = np.array([-P[1],-P[0]]) 
+print("Original point P:", P) 
+print("Reflection through y-axis:", reflection_x_axis) 
+print("Scaling in X-coordinates by factor 6:", scaling_x) 
+print("Rotation about origin through an angle of 30 degree:",P_rotation)
+print("Reflection through the line y = -x:", reflection_line)
